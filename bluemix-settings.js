@@ -42,10 +42,6 @@ var settings = module.exports = {
     // Move the admin UI
     httpAdminRoot: '/red',
 
-    // You can protect the user interface with a userid and password by using the following property
-    // the password must be an md5 hash  eg.. 5f4dcc3b5aa765d61d8327deb882cf99 ('password')
-    //httpAdminAuth: {user:"user",pass:"5f4dcc3b5aa765d61d8327deb882cf99"},
-
     // Serve up the welcome page
     httpStatic: path.join(__dirname,"public"),
 
@@ -53,7 +49,10 @@ var settings = module.exports = {
 
     storageModule: require("./couchstorage")
 }
-
+// You can set adminAuth yourself in this file, but it will look for the
+// the following environment variables and automatically enable adminAuth
+// if they have been set. That means you don't have to hardcode any
+// credentials in this file.
 if (process.env.NODE_RED_USERNAME && process.env.NODE_RED_PASSWORD) {
     settings.adminAuth = {
         type: "credentials",
@@ -77,7 +76,7 @@ if (process.env.NODE_RED_USERNAME && process.env.NODE_RED_PASSWORD) {
 
 settings.couchAppname = VCAP_APPLICATION['application_name'];
 
-
+// NODE_RED_STORAGE_NAME is automatically set by this applications manifest.
 var storageServiceName = process.env.NODE_RED_STORAGE_NAME || new RegExp("^"+settings.couchAppname+".cloudantNoSQLDB");
 var couchService = appEnv.getService(storageServiceName);
 
