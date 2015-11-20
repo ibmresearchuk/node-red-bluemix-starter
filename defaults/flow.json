@@ -1,0 +1,1 @@
+[{"id":"b1b11140.4e4ef","type":"inject","name":"","topic":"","payload":"Hello Node-RED!","payloadType":"string","repeat":"","crontab":"","once":false,"x":141,"y":61,"z":"a09be5e0.5f6418","wires":[["f2f2649a.0d0d98"]]},{"id":"f2f2649a.0d0d98","type":"debug","name":"","active":true,"console":"false","complete":"false","x":401,"y":87,"z":"a09be5e0.5f6418","wires":[]}]
