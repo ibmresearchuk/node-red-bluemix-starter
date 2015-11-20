@@ -6,7 +6,7 @@ Node-RED Bluemix Starter Application
 This repository is an example Node-RED application that can be deployed into
 Bluemix with only a couple clicks.
 
-Try it out for yourself right now by clicking: ![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/node-red/node-red-bluemix.git)
+Try it out for yourself right now by clicking: [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/node-red/node-red-bluemix.git)
 
 ### How does this work?
 
@@ -35,5 +35,8 @@ The web content you get when you go to the application's URL is stored under the
 Additional nodes can be added to the `package.json` file and all other Node-RED
 configuration settings can be set in `bluemix-settings.js`.
 
-If you do clone this repository, make sure you update this README.md file to point
+If you do clone this repository, make sure you update this `README.md` file to point
 the `Deploy to Bluemix` button at your repository.
+
+If you want to change the name of the Cloudant instance that gets created, the memory
+allocated to the application or other deploy-time options, have a look in `manifest.yml`.
