@@ -1,6 +1,6 @@
 {
     "name"         : "node-red-bluemix-starter",
-    "version"      : "0.4.21",
+    "version"      : "0.4.25",
     "dependencies": {
         "when": "~3.x",
         "nano": "~5.11.0",
@@ -8,7 +8,8 @@
         "feedparser":"~0.19.2",
         "redis":"~0.10.1",
         "node-red": "0.x",
-        "node-red-bluemix-nodes":"0.x",
+        "node-red-bluemix-nodes":"1.x",
+        "node-red-node-watson":"0.x",
         "node-red-node-openwhisk":"0.x",
         "node-red-node-cf-cloudant":"0.x",
         "node-red-contrib-scx-ibmiotapp":"0.x",
