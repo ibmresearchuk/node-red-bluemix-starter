@@ -1,6 +1,6 @@
 {
-    "name"         : "node-red-bluemix-starter",
-    "version"      : "0.4.25",
+    "name"         : "node-red-bluemix-watson-starter",
+    "version"      : "1.0.0",
     "dependencies": {
         "when": "~3.x",
         "nano": "~5.11.0",
