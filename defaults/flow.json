@@ -1709,7 +1709,7 @@
     "name": "Get Image URL",
     "field": "payload",
     "format": "html",
-    "template": "<html>\n<head><title>Watson Visual Recognition on Node-RED</title></head>\n<body>\n<h1>Welcome to the Watson Visual Recognition Demo on Node-RED</h1>\n<h2>Select an image URL</h2>\n<form  action=\"{{req._parsedUrl.pathname}}\">\n    <img src=\"http://visual-recognition-demo.mybluemix.net/images/horses.jpg\" height='100'/>\n    <img src=\"http://visual-recognition-demo.mybluemix.net/images/73388.jpg\" height='100'/>\n    <img src=\"http://visual-recognition-demo.mybluemix.net/images/26537.jpg\" height='100'/>\n    <img src=\"http://visual-recognition-demo.mybluemix.net/images/4068.jpg\" height='100'/>\n    <br/>Copy above image location URL or enter any image URL:<br/>\n    <input type=\"text\" name=\"imageurl\"/>\n    <input type=\"submit\" value=\"Analyze\"/>\n</form>\n</body>\n</html>",
+    "template": "<html>\n<head><title>Watson Visual Recognition on Node-RED</title></head>\n<body>\n<h1>Welcome to the Watson Visual Recognition Demo on Node-RED</h1>\n<h2>Select an image URL</h2>\n<form  action=\"{{req._parsedUrl.pathname}}\">\n    <img src=\"http://visual-recognition-demo.mybluemix.net/images/samples/1.jpg\" height='100'/>\n    <img src=\"http://visual-recognition-demo.mybluemix.net/images/samples/2.jpg\" height='100'/>\n    <img src=\"http://visual-recognition-demo.mybluemix.net/images/samples/5.jpg\" height='100'/>\n    <img src=\"http://visual-recognition-demo.mybluemix.net/images/samples/6.jpg\" height='100'/>\n    <br/>Copy above image location URL or enter any image URL:<br/>\n    <input type=\"text\" name=\"imageurl\"/>\n    <input type=\"submit\" value=\"Analyze\"/>\n</form>\n</body>\n</html>",
     "x": 486,
     "y": 105,
     "wires": [
