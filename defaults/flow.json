@@ -896,7 +896,7 @@
     "name": "Prompt Images",
     "field": "payload",
     "format": "html",
-    "template": "<h1>Welcome to the Alchemy Vision Face Detection Demo on Node-RED</h1>\n<H2>Select an image</H2>\n<form  action=\"{{req._parsedUrl.pathname}}\">\n    <img src=\"http://www.ambafrance-mt.org/local/cache-vignettes/L945xH539/family_photo8851-b0e9b.jpg\" height='100'/>\n    <img src=\"https://upload.wikimedia.org/wikipedia/commons/f/f1/34th_G8_summit_member_20080707.jpg\" height='100'/>\n    <img src=\"http://demo1.alchemyapi.com/images/vision/politicians.jpg\" height='100'/>\n        <br/>Copy above image location URL or enter any image URL:<br/>\n    Image URL: <input type=\"text\" name=\"imageurl\"/>\n    <input type=\"submit\" value=\"Analyze\"/>\n</form>",
+    "template": "<h1>Welcome to the Alchemy Vision Face Detection Demo on Node-RED</h1>\n<H2>Select an image</H2>\n<form  action=\"{{req._parsedUrl.pathname}}\">\n    <img src=\"http://cssslider.com/sliders/demo-5/data1/images/road_forest_trees_tree_trip_nature_leaves_season.jpg\" height='100'/>\n    <img src=\"https://media-mediatemple.netdna-ssl.com/wp-content/uploads/2016/01/07-responsive-image-example-castle-7-opt.jpg\" height='100'/>\n    <img src=\"http://joombig.com/demo-extensions1/images/gallery_slider/Swan_large.jpg\" height='100'/>\n        <br/>Copy above image location URL or enter any image URL:<br/>\n    Image URL: <input type=\"text\" name=\"imageurl\"/>\n    <input type=\"submit\" value=\"Analyze\"/>\n</form>",
     "x": 523,
     "y": 58,
     "wires": [
