@@ -1,17 +1,17 @@
 body {
-    color: /*#555;*/ white;
+    color: #555;
 }
 a {
     text-decoration: none;
 }
-/*.title, .row2, .nodes {
-    background: #eee;
-}*/
+.title, .row2, .nodes {
+    background: white;
+}
 
 
 .blurb a {
     text-decoration: underline;
-    color: /*#555;*/ white;
+    color: #555;
 }
 a.button {
     text-decoration: none;
@@ -123,7 +123,7 @@ a.button:hover {
     font-size: 20px;
     font-family: "Roboto Slab";
     font-weight: normal;
-    color: /*#555;*/ white;
+    color: #555;
 }
 .title img {
     margin: auto;
