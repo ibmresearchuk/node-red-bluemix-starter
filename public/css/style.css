@@ -1,5 +1,5 @@
 body {
-    color: #555;
+    color: /*#555;*/ white;
 }
 a {
     text-decoration: none;
@@ -11,7 +11,7 @@ a {
 
 .blurb a {
     text-decoration: underline;
-    color: #555;
+    color: /*#555;*/ white;
 }
 a.button {
     text-decoration: none;
@@ -123,7 +123,7 @@ a.button:hover {
     font-size: 20px;
     font-family: "Roboto Slab";
     font-weight: normal;
-    color: #555;
+    color: /*#555;*/ white;
 }
 .title img {
     margin: auto;
