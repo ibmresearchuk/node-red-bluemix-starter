@@ -17,8 +17,8 @@ This is a fork of the Node-RED in Bluemix boilerplate that integrates the follow
 Available Watson Nodes
 This Boilerplate shows basics flows sample of the Watson nodes
 
-- Alchemy Vision
-- Alchemy News
+- Alchemy Image Analysis
+- Alchemy Data News
 - Alchemy Feature Extraction
 - Dialog
 - Document Conversion
@@ -32,6 +32,7 @@ This Boilerplate shows basics flows sample of the Watson nodes
 - Tradeoff Analytics
 - Tone Analyser
 - Visual Recognition
+- Retrieve and Rank (coming soon)
 
 ###Notice
 - this Watson Node-RED Boilerplate can be used as a starting point for demo or hackathon, but it is not intended for a production usage
