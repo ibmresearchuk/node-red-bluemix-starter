@@ -2388,9 +2388,9 @@
     "z": "ad0848a1.7c5ed8",
     "name": "",
     "classifier": "Test",
-    "username": "94138357-536d-428a-932b-ad80abb1b383",
-    "password": "fnbfMNIziSYi",
-    "service": "GNFVisual",
+    "username": "",
+    "password": "",
+    "service": "",
     "x": 631,
     "y": 510,
     "wires": [
