@@ -36,7 +36,7 @@ This Boilerplate shows basics flows sample of the Watson nodes
 
 ###Notice
 - this Watson Node-RED Boilerplate can be used as a starting point for demo or hackathon, but it is not intended for a production usage
-- Watson nodes for Node-RED : these nodes are free of use, and are open-source under the TOBEDEFINED LICENSE</p>
+- Watson nodes for Node-RED : these nodes are free of use, and are open-source under the Apache 2</p>
 - Watson API / Bluemix services : those nodes needs to be linked with the appropriate Watson service in the Bluemix catalog, and support only one version of each the Watson API. The usage of those services are following a Cost Plan defined in the Bluemix catalog</p>
 
 ### How does this work?
