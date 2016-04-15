@@ -6,7 +6,7 @@ Node-RED Watson Bluemix Starter Application
 This repository is an example Node-RED application that can be deployed into
 Bluemix with only a couple clicks. Try it out for yourself right now by clicking:
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com//watson-developer-cloud/node-red-bluemix-starter.git)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/node-red-bluemix-starter.git)
 
 This is a fork of the Node-RED in Bluemix boilerplate that integrates the following :
 
