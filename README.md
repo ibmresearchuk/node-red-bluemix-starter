@@ -1,12 +1,43 @@
-Node-RED Bluemix Starter Application
-====================================
+Node-RED Watson Bluemix Starter Application
+======================================
 
-### Node-RED in BlueMix
+### Node-RED Watson in Bluemix
 
 This repository is an example Node-RED application that can be deployed into
 Bluemix with only a couple clicks. Try it out for yourself right now by clicking:
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/node-red-bluemix-starter.git)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com//watson-developer-cloud/node-red-bluemix-starter.git)
+
+This is a fork of the Node-RED in Bluemix boilerplate that integrates the following :
+
+- All available Watson nodes for Node-RED on <a href="https://github.com/watson-developer-cloud/node-red-node-watson">GitHub</a>
+- Flows from the <a href="https://github.com/watson-developer-cloud/node-red-labs/tree/master/basic_examples">Watson Node-RED Basics Labs</a>
+- added Dropbox and Box nodes in the palette
+
+Available Watson Nodes
+This Boilerplate shows basics flows sample of the Watson nodes
+
+- Alchemy Image Analysis
+- Alchemy Data News
+- Alchemy Feature Extraction
+- Dialog
+- Document Conversion
+- Language Identification
+- Language Translation
+- Natural Language Classifier
+- Personality insights
+- Relationship Extraction
+- Speech to Text
+- Text to Speech
+- Tradeoff Analytics
+- Tone Analyser
+- Visual Recognition
+- Retrieve and Rank (coming soon)
+
+###Notice
+- this Watson Node-RED Boilerplate can be used as a starting point for demo or hackathon, but it is not intended for a production usage
+- Watson nodes for Node-RED : these nodes are free of use, and are open-source under the Apache 2</p>
+- Watson API / Bluemix services : those nodes needs to be linked with the appropriate Watson service in the Bluemix catalog, and support only one version of each the Watson API. The usage of those services are following a Cost Plan defined in the Bluemix catalog</p>
 
 ### How does this work?
 
