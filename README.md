@@ -28,6 +28,9 @@ This repository is here to be cloned, modified and re-used to allow anyone creat
 their own Node-RED based application that can be quickly deployed to Bluemix.
 
 The default flows are stored in the `defaults` directory in the file called `flow.json`.
+When the application is first started, this flow is copied to the attached Cloudant
+instance. When a change is deployed from the editor, the version in cloudant will
+be updated - not this file.
 
 The web content you get when you go to the application's URL is stored under the
 `public` directory.
