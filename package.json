@@ -1,6 +1,6 @@
 {
     "name"         : "node-red-bluemix-starter",
-    "version"      : "0.4.25",
+    "version"      : "0.4.26",
     "dependencies": {
         "when": "~3.x",
         "nano": "~5.11.0",
@@ -18,6 +18,6 @@
         "node-red-nodes-cf-sqldb-dashdb":"0.x"
     },
     "engines": {
-        "node": "0.12.x"
+        "node": "4.x"
     }
 }
