@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 IBM Corp.
+ * Copyright 2014, 2017 IBM Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,32 +37,33 @@ function prepopulateFlows(resolve) {
                 try {
                     var flow = fs.readFileSync(__dirname+"/defaults/flow.json","utf8");
                     var flows = JSON.parse(flow);
-                    console.log(">> Adding default flow");
+                    util.log("[couchstorage] Installing default flow");
                     promises.push(couchstorage.saveFlows(flows));
-                } catch(err) {
-                    console.log(">> Failed to save default flow");
-                    console.log(err);
+                } catch(err2) {
+                    util.log("[couchstorage] Failed to save default flow");
+                    util.log(err2);
                 }
             } else {
-                console.log(">> No default flow found");
+                util.log("[couchstorage] No default flow found");
             }
             if (fs.existsSync(__dirname+"/defaults/flow_cred.json")) {
                 try {
                     var cred = fs.readFileSync(__dirname+"/defaults/flow_cred.json","utf8");
                     var creds = JSON.parse(cred);
-                    console.log(">> Adding default credentials");
+                    util.log("[couchstorage] Installing default credentials");
                     promises.push(couchstorage.saveCredentials(creds));
-                } catch(err) {
-                    console.log(">> Failed to save default credentials");
-                    console.log(err);
+                } catch(err2) {
+                    util.log("[couchstorage] Failed to save default credentials");
+                    util.log(err2);
                 }
             } else {
-                console.log(">> No default credentials found");
+                util.log("[couchstorage] No default credentials found");
             }
             when.settle(promises).then(function() {
-                    resolve();
+                resolve();
             });
         } else {
+            // Flows already exist - leave them alone
             resolve();
         }
     });
@@ -75,7 +76,7 @@ var couchstorage = {
         var couchDb = nano(settings.couchUrl);
         appname = settings.couchAppname || require('os').hostname();
         var dbname = settings.couchDb||"nodered";
-        
+
         return when.promise(function(resolve,reject) {
             couchDb.db.get(dbname,function(err,body) {
                 if (err) {
@@ -127,19 +128,17 @@ var couchstorage = {
                 } else {
                     flowDb = couchDb.use(dbname);
                     prepopulateFlows(resolve);
-                    resolve();
                 }
             });
         });
     },
-    
-    
+
     getFlows: function() {
         var key = appname+"/"+"flow";
         return when.promise(function(resolve,reject) {
             flowDb.get(key,function(err,doc) {
                 if (err) {
-                    if (err.status_code != 404) {
+                    if (err.statusCode != 404) {
                         reject(err.toString());
                     } else {
                         resolve([]);
@@ -151,7 +150,7 @@ var couchstorage = {
             });
         });
     },
-    
+
     saveFlows: function(flows) {
         var key = appname+"/"+"flow";
         return when.promise(function(resolve,reject) {
@@ -169,13 +168,13 @@ var couchstorage = {
             });
         });
     },
-    
+
     getCredentials: function() {
         var key = appname+"/"+"credential";
         return when.promise(function(resolve,reject) {
             flowDb.get(key,function(err,doc) {
                 if (err) {
-                    if (err.status_code != 404) {
+                    if (err.statusCode != 404) {
                         reject(err.toString());
                     } else {
                         resolve({});
@@ -187,7 +186,7 @@ var couchstorage = {
             });
         });
     },
-    
+
     saveCredentials: function(credentials) {
         var key = appname+"/"+"credential";
         return when.promise(function(resolve,reject) {
@@ -205,13 +204,13 @@ var couchstorage = {
             });
         });
     },
-    
+
     getSettings: function() {
         var key = appname+"/"+"settings";
         return when.promise(function(resolve,reject) {
             flowDb.get(key,function(err,doc) {
                 if (err) {
-                    if (err.status_code != 404) {
+                    if (err.statusCode != 404) {
                         reject(err.toString());
                     } else {
                         resolve({});
@@ -223,7 +222,7 @@ var couchstorage = {
             });
         });
     },
-    
+
     saveSettings: function(settings) {
         var key = appname+"/"+"settings";
         return when.promise(function(resolve,reject) {
@@ -241,7 +240,7 @@ var couchstorage = {
             });
         });
     },
-    
+
     getAllFlows: function() {
         var key = [appname,"flow"];
         return when.promise(function(resolve,reject) {
@@ -268,7 +267,7 @@ var couchstorage = {
             });
         });
     },
-    
+
     getFlow: function(fn) {
         if (fn.substr(0) != "/") {
             fn = "/"+fn;
@@ -284,7 +283,7 @@ var couchstorage = {
             });
         });
     },
-    
+
     saveFlow: function(fn,data) {
         if (fn.substr(0) != "/") {
             fn = "/"+fn;
@@ -304,10 +303,10 @@ var couchstorage = {
                     }
                 });
             });
-                
+
         });
     },
-    
+
     getLibraryEntry: function(type,path) {
         var key = appname+"/lib/"+type+(path.substr(0)!="/"?"/":"")+path;
         if (libraryCache[key]) {
@@ -374,7 +373,7 @@ var couchstorage = {
                     }
                 });
             });
-                
+
         });
     }
 };
