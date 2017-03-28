@@ -19,6 +19,10 @@ It will automatically create an instance of the Cloudant service, call it
 Node-RED instance will store its data. If you deploy multiple instances of
 Node-RED from this repository, they will share the one Cloudant instance.
 
+
+When you first access the application, you'll be asked to set some security options
+to ensure your flow editor remains secure from unauthorised access.
+
 It includes a set of default flows that are automatically deployed the first time
 Node-RED runs.
 
