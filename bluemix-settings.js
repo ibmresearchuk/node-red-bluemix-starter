@@ -82,7 +82,7 @@ if (!couchService) {
     }
     //fall back to localfilesystem storage
 } else {
-    util.log("Using Cloudant service: "+storageServiceName);
+    util.log("Using Cloudant service: "+storageServiceName+" : "+settings.couchAppname);
     settings.storageModule = require("./couchstorage");
     settings.couchUrl = couchService.credentials.url;
 }
