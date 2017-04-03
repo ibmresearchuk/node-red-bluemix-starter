@@ -308,7 +308,12 @@ var couchstorage = {
     },
 
     getLibraryEntry: function(type,path) {
-        var key = appname+"/lib/"+type+(path.substr(0)!="/"?"/":"")+path;
+        if (path != "" && path.substr(0,1) != "/") {
+            var key = appname+"/lib/"+type+"/"+path;
+        } else {
+            var key = appname+"/lib/"+type+path;
+        }
+        
         if (libraryCache[key]) {
             return when.resolve(libraryCache[key]);
         }
@@ -316,7 +321,7 @@ var couchstorage = {
         return when.promise(function(resolve,reject) {
             flowDb.get(key,function(err,doc) {
                 if (err) {
-                    if (path.substr(-1) == "/") {
+                    if (path.substr(-1,1) == "/") {
                         path = path.substr(0,path.length-1);
                     }
                     var qkey = [appname,type,path];
@@ -350,7 +355,12 @@ var couchstorage = {
         });
     },
     saveLibraryEntry: function(type,path,meta,body) {
-        if (path.substr(0) != "/") {
+
+        var p = path.split("/");    // strip multiple slash   
+        p = p.filter(Boolean);
+        path = p.slice(0,p.length).join("/")
+                
+        if (path != "" && path.substr(0,1) != "/") {
             path = "/"+path;
         }
         var key = appname+"/lib/"+type+path;
