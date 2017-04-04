@@ -26,6 +26,7 @@ var userDir = path.join(__dirname,".node-red");
 // Ensure userDir exists - something that is normally taken care of by
 // localfilesystem storage when running locally
 fs.mkdirSync(userDir);
+fs.mkdirSync(path.join(userDir,"node_modules"));
 
 var settings = module.exports = {
     uiPort: process.env.PORT || 1880,
