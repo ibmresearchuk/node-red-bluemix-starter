@@ -17,16 +17,22 @@
 var path = require("path");
 var when = require("when");
 var util = require("util");
+var fs = require("fs");
 
 var cfenv = require("cfenv");
 var appEnv = cfenv.getAppEnv();
+
+var userDir = path.join(__dirname,".node-red");
+// Ensure userDir exists - something that is normally taken care of by
+// localfilesystem storage when running locally
+fs.mkdirSync(userDir);
 
 var settings = module.exports = {
     uiPort: process.env.PORT || 1880,
     mqttReconnectTime: 15000,
     debugMaxLength: 1000,
 
-    userDir: path.join(__dirname,".node-red"),
+    userDir: userDir,
 
     flowFile: "flows.json",
 
