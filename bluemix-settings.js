@@ -32,6 +32,9 @@ var settings = module.exports = {
     uiPort: process.env.PORT || 1880,
     mqttReconnectTime: 15000,
     debugMaxLength: 1000,
+    
+    //Flag for enabling Appmetrics dashboard (https://github.com/RuntimeTools/appmetrics-dash)
+    useAppmetrics: false,
 
     userDir: userDir,
 
