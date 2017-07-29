@@ -129,8 +129,12 @@ function startNodeRED(config) {
             util.log("Disabled anonymous read-only access - set NODE_RED_GUEST_ACCESS to 'true' to enable");
         }
     }
+    if (config.useAppmetrics) {
+      settings.useAppmetrics = config.useAppmetrics;
+    }
     var dash;
-    if (settings.useAppmetrics || (process.env.NODE_RED_USE_APPMETRICS === 'true')) {
+    // ensure the environment variable overrides the settings
+    if ((process.env.NODE_RED_USE_APPMETRICS === 'true') || (settings.useAppmetrics && !(process.env.NODE_RED_USE_APPMETRICS === 'false'))) {
     	dash = require('appmetrics-dash');
     	dash.attach();
     }

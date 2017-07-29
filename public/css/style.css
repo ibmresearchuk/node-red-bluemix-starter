@@ -226,7 +226,7 @@ a.button:hover {
 }
 .body {
     position: absolute;
-    width: 400%;
+    width: 500%;
 }
 .toolbar {
     position: absolute;
@@ -264,7 +264,7 @@ button:disabled {
     vertical-align: top;
     display:inline-block;
     padding: 30px;
-    width: calc(25% - 5px);
+    width: calc(20% - 5px);
 }
 .hide {
     display:none;
@@ -349,7 +349,7 @@ input[type=text],input[type=password] {
 .progress-bar {
     display: inline-block;
     height: 100%;
-    width: calc((500px - (4*20px)) /3 );
+    width: calc((500px - (5*20px)) / 4 );
     background: url(../images/progress-bar.png) repeat-x 50% 50%;
 }
 .progress-bar.active {

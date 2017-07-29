@@ -87,6 +87,33 @@
                             </div>
                         </li>
                         <li>
+                            <h4 id="enabling-appmetrics"> + Enabling Application Metrics for Node.js monitoring</h4>
+                            <div class="custom-content">
+                                <p>When you first ran this application you were presented with an option to enable monitoring of your Node-RED
+                                    flows using the <a href="https://developer.ibm.com/node/monitoring-post-mortem/application-metrics-node-js/" target="_blank">Application Metrics for Node.js</a>
+                                    dashboard. To change those options, you can set an environment variable from either the Bluemix console or the <code>cf</code> command-line
+                                </p>
+                                <p>When enabled, the <a href="https://developer.ibm.com/node/monitoring-post-mortem/application-metrics-node-js/" target="_blank">Application Metrics for Node.js</a> dashboard will be available at </p>
+                                <p id="appdashURL"></p>
+                                <p>The environment variable you can set is:</p>
+                                <ul>
+                                    <li><code>NODE_RED_USE_APPMETRICS</code> - set to <code>true</code> to enable <a href="https://developer.ibm.com/node/monitoring-post-mortem/application-metrics-node-js/" target="_blank">Application Metrics for Node.js</a>
+                                         monitoring. Set to <code>false</code> to disable.
+                                    </li>
+                                </ul>
+                                <h5>Bluemix console</h5>
+                                <ol>
+                                    <li>On the Bluemix console page for this application, go to the 'Runtime' page and then the 'Environment Variables' section</li>
+                                    <li>Add the required user-defined variable</li>
+                                    <li>Click <code>Save</code> and restart your application</li>
+                                </ol>
+                                <h5><code>cf</code> command-line</h5>
+                                <ol>
+                                    <li>Run the command: <pre>cf set-env [APPLICATION_NAME] [ENV_VAR_NAME] [ENV_VAR_VALUE]</pre></li>
+                                </ol>
+                            </div>
+                        </li>
+                        <li>
                             <h4> + Adding new nodes to the palette</h4>
                             <div class="custom-content">
                                 <p>There is a growing collection of additional nodes that can be added to the Node-RED editor.
@@ -178,6 +205,10 @@
     </div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
+    var appdashURL = $("#appdashURL");
+    var urlString = location.origin + "/appmetrics-dash";
+    appdashURL.empty();
+    $('<a href="' + urlString + '" target="_blank">' + urlString + '</a>').appendTo(appdashURL);
 
     $(function() {
         $("ul.customisations h4").click(function(ev) {
