@@ -25,8 +25,8 @@ var appEnv = cfenv.getAppEnv();
 var userDir = path.join(__dirname,".node-red");
 // Ensure userDir exists - something that is normally taken care of by
 // localfilesystem storage when running locally
-fs.mkdirSync(userDir);
-fs.mkdirSync(path.join(userDir,"node_modules"));
+if(!fs.existsSync(userDir)) fs.mkdirSync(userDir);
+if(!fs.existsSync(path.join(userDir,"node_modules"))) fs.mkdirSync(path.join(userDir,"node_modules"));
 
 var settings = module.exports = {
     uiPort: process.env.PORT || 1880,
