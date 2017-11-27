@@ -1,5 +1,5 @@
 applications:
-- memory: 512M
+- memory: 200M
   services:
   - sample-node-red-cloudantNoSQLDB
   env:
