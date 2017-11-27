@@ -16,7 +16,8 @@
         "node-red-node-openwhisk":"0.x",
         "node-red-node-cf-cloudant":"0.x",
         "node-red-contrib-scx-ibmiotapp":"0.x",
-        "node-red-nodes-cf-sqldb-dashdb":"0.x"
+        "node-red-nodes-cf-sqldb-dashdb":"0.x",
+        "node-red-contrib-chatbot":"x"
     },
     "scripts": {
         "start": "node --max-old-space-size=384 index.js --settings ./bluemix-settings.js -v"
