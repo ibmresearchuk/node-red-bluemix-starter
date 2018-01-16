@@ -20,7 +20,7 @@ var util = require("util");
 var path = require("path");
 
 
-util.log("Starting Node-RED on Bluemix bootstrap");
+util.log("Starting Node-RED on IBM Cloud bootstrap");
 util.log("Loading bluemix-settings.js");
 var settings = require("./bluemix-settings.js");
 

@@ -1,6 +1,6 @@
 {
     "name"         : "node-red-bluemix-starter",
-    "version"      : "0.6.0",
+    "version"      : "0.8.0",
     "dependencies": {
         "appmetrics-dash": "^3.2.1",
         "when": "~3.x",
