@@ -1,0 +1,35 @@
+{
+  "name": "Node-RED",
+  "description": "This is one amazing StarterKit",
+  "thumbnailURL": "blueprint/thumbnail.svg",
+  "appIconURL": "blueprint/appicon.svg",
+  "previewURLs": [],
+  "type": "WEB",
+  "tags": [
+    "iotplatform",
+    "node",
+    "developer"
+  ],
+  "generators": {
+    "node": [
+      "generator-starterkit-content-downloader",
+      "generator-ibm-cloud-enablement"
+    ]
+  },
+  "generatorOptions": {
+    "generator-starterkit-content-downloader": {
+      "scope": "@arf"
+    },
+    "generator-ibm-cloud-enablement": {}
+  },
+  "requiredCapabilities": [
+    "cloudant"
+  ],
+  "requiredCapabilitiesURLs": {
+    "cloudant": "https://console.bluemix.net/catalog/services/cloudant-nosql-db"
+  },
+  "servicePlans": {
+    "cloudant": "Lite"
+  },
+  "email": "cloud@us.ibm.com"
+}
