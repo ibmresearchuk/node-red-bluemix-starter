@@ -1,10 +1,10 @@
 applications:
-- memory: 200M
+- path: .
+  memory: 768M
+  instances: 1
+  domain: mybluemix.net
+  name: testgiuliano
+  host: testgiuliano
+  disk_quota: 2048M
   services:
-  - sample-node-red-cloudantNoSQLDB
-  env:
-    NODE_RED_STORAGE_NAME: sample-node-red-cloudantNoSQLDB
-declared-services:
-  sample-node-red-cloudantNoSQLDB:
-    label: cloudantNoSQLDB
-    plan:  Lite
+  - testgiuliano-cloudantNoSQLDB
