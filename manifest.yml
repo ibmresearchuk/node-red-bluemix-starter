@@ -1,6 +1,6 @@
 applications:
 - path: .
-  memory: 768M
+  memory: 1024M
   instances: 1
   domain: mybluemix.net
   name: testgiuliano
