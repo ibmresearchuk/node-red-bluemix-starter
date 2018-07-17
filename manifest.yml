@@ -1,10 +1,10 @@
 applications:
 - memory: 256M
   services:
-  - sample-node-red-cloudantNoSQLDB
+  - testgiuliano-cloudantNoSQLDB
   env:
-    NODE_RED_STORAGE_NAME: sample-node-red-cloudantNoSQLDB
+    NODE_RED_STORAGE_NAME: testgiuliano-cloudantNoSQLDB
 declared-services:
-  sample-node-red-cloudantNoSQLDB:
+  testgiuliano-cloudantNoSQLDB:
     label: cloudantNoSQLDB
     plan:  Lite
