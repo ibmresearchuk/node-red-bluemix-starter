@@ -1,5 +1,5 @@
 applications:
-- memory: 1024M
+- memory: 512M
   services:
   - testgiuliano-cloudantNoSQLDB
   env:
