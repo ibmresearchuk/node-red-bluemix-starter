@@ -20,7 +20,8 @@
         "node-red-contrib-chatbot":"0.9.20",
         "node-red-contrib-moment":"x",
         "node-red-contrib-function-npm":"x",
-        "bluemix-autoscaling-agent":"*"
+        "bluemix-autoscaling-agent":"*",
+        "node-red-contrib-cognitive-services":"*"
     },
     "scripts": {
         "start": "node -r bluemix-autoscaling-agent --max-old-space-size=160 index.js --settings ./bluemix-settings.js -v"
