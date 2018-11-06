@@ -1,5 +1,5 @@
 {
-    "name"         : "node-red-bluemix-starter",
+    "name"         : "node-red-app",
     "version"      : "0.8.0",
     "dependencies": {
         "appmetrics-dash": "^3.2.1",
