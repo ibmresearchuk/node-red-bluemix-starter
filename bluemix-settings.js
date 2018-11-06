@@ -81,6 +81,8 @@ var settings = module.exports = {
 
 // Look for the attached Cloudant instance to use for storage
 settings.couchAppname = appEnv.name;
+settings.couchDb = process.env.NODE_RED_STORAGE_DB_NAME || appEnv.name.replace(/[^a-z0-9_$()+/-]/g,"_");
+
 // NODE_RED_STORAGE_NAME is automatically set by this applications manifest.
 var storageServiceName = process.env.NODE_RED_STORAGE_NAME || new RegExp("^"+settings.couchAppname+".cloudantNoSQLDB");
 var couchService = appEnv.getService(storageServiceName);
