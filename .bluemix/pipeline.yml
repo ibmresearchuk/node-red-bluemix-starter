@@ -21,9 +21,11 @@ stages:
         type: deployer
         script: |-
             #!/bin/bash
+            CLOUDANT_NAME="${CF_APP}.cdb"
             cf push "${CF_APP}" --no-start
-            cf create-service cloudantNoSQLDB Lite "${CF_APP}.cloudantNoSQLDB"
-            cf bind-service "${CF_APP}" "${CF_APP}.cloudantNoSQLDB" -c '{"role":"Manager"}'
+            cf set-env "${CF_APP}" NODE_RED_STORAGE_NAME "${CLOUDANT_NAME}"
+            cf create-service cloudantNoSQLDB Lite "${CF_APP}.cdb"
+            cf bind-service "${CF_APP}" "${CLOUDANT_NAME}" -c '{"role":"Manager"}'
             cf start "${CF_APP}"
             # View logs
             cf logs "${CF_APP}" --recent
