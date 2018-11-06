@@ -1,6 +1,6 @@
 {
     "name"         : "node-red-app",
-    "version"      : "0.8.0",
+    "version"      : "0.9.0",
     "dependencies": {
         "appmetrics-dash": "^3.2.1",
         "when": "~3.x",
@@ -22,6 +22,6 @@
         "start": "node --max-old-space-size=160 index.js --settings ./bluemix-settings.js -v"
     },
     "engines": {
-        "node": "6.x"
+        "node": "8.x"
     }
 }
