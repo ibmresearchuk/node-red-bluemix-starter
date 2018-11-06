@@ -1,10 +1,5 @@
 applications:
 - memory: 256M
-  services:
-  - sample-node-red-cloudantNoSQLDB
   env:
-    NODE_RED_STORAGE_NAME: sample-node-red-cloudantNoSQLDB
-declared-services:
-  sample-node-red-cloudantNoSQLDB:
-    label: cloudantNoSQLDB
-    plan:  Lite
+    OPTIMIZE_MEMORY: true
+  command: node index.js --settings ./bluemix-settings.js -v

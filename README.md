@@ -6,7 +6,7 @@ Node-RED IBM Cloud Starter Application
 This repository is an example Node-RED application that can be deployed into
 IBM Cloud with only a couple clicks. Try it out for yourself right now by clicking:
 
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibmets/node-red-bluemix-starter.git)
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/knolleary/node-red-bluemix-starter.git)
 
 ### How does this work?
 
@@ -14,11 +14,8 @@ When you click the button, you are taken to IBM Cloud where you get a pick a nam
 for your application at which point the platform takes over, grabs the code from
 this repository and gets it deployed.
 
-It will automatically create an instance of the Cloudant service, call it
-`sample-node-red-cloudantNoSQLDB` and bind it to you app. This is where your
-Node-RED instance will store its data. If you deploy multiple instances of
-Node-RED from this repository, they will share the one Cloudant instance.
-
+It will automatically create an instance of the Cloudant service and bind it to
+your app. This is where your Node-RED instance will store its data.
 
 When you first access the application, you'll be asked to set some security options
 to ensure your flow editor remains secure from unauthorised access.
