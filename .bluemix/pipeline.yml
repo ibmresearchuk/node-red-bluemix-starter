@@ -25,8 +25,9 @@ stages:
             cf push "${CF_APP}"
             # View logs
             cf logs "${CF_APP}" --recent
-        target: 
+        target:
+          region_id: ${CF_REGION_ID}
           organization: ${CF_ORGANIZATION}
           space: ${CF_SPACE}
-          url: ${CF_TARGET_URL}
           application: ${CF_APP}
+          api_key: ${API_KEY}
