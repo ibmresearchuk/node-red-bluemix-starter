@@ -3,8 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node-RED in IBM Bluemix</title>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100' rel='stylesheet' type='text/css'>
+    <title>Node-RED on IBM Cloud</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100' rel='stylesheet' type='text/css'>
     <link href="css/simplegrid.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">
 </head>
@@ -14,7 +14,7 @@
 
     <div class="header">
         <div class="header-content">
-            <div class="brand">Node-RED on IBM Bluemix</div>
+            <div class="brand">Node-RED on IBM Cloud</div>
         </div>
     </div>
     <!-- Grid 1 -->
@@ -35,7 +35,7 @@
             <div class="col-1-2">
                 <div class="content blurb">
                     <p>Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.</p>
-                    <p>This instance is running  as an IBM Bluemix application, giving it access to the wide range of services available on the platform.</p>
+                    <p>This instance is running  as an IBM Cloud application, giving it access to the wide range of services available on the platform.</p>
                     <p>More information about Node-RED, including documentation, can be found at <a href="https://nodered.org">nodered.org</a>.</p>
                 </div>
             </div>
@@ -78,6 +78,33 @@
                                 <ol>
                                     <li>On the Bluemix console page for this application, go to the 'Runtime' page and then the 'Environment Variables' section</li>
                                     <li>Add the required user-defined variables</li>
+                                    <li>Click <code>Save</code> and restart your application</li>
+                                </ol>
+                                <h5><code>cf</code> command-line</h5>
+                                <ol>
+                                    <li>Run the command: <pre>cf set-env [APPLICATION_NAME] [ENV_VAR_NAME] [ENV_VAR_VALUE]</pre></li>
+                                </ol>
+                            </div>
+                        </li>
+                        <li>
+                            <h4 id="enabling-appmetrics"> + Enabling Application Metrics for Node.js monitoring</h4>
+                            <div class="custom-content">
+                                <p>When you first ran this application you were presented with an option to enable monitoring of your Node-RED
+                                    flows using the <a href="https://developer.ibm.com/node/monitoring-post-mortem/application-metrics-node-js/" target="_blank">Application Metrics for Node.js</a>
+                                    dashboard. To change those options, you can set an environment variable from either the Bluemix console or the <code>cf</code> command-line
+                                </p>
+                                <p>When enabled, the <a href="https://developer.ibm.com/node/monitoring-post-mortem/application-metrics-node-js/" target="_blank">Application Metrics for Node.js</a> dashboard will be available at </p>
+                                <p id="appdashURL"></p>
+                                <p>The environment variable you can set is:</p>
+                                <ul>
+                                    <li><code>NODE_RED_USE_APPMETRICS</code> - set to <code>true</code> to enable <a href="https://developer.ibm.com/node/monitoring-post-mortem/application-metrics-node-js/" target="_blank">Application Metrics for Node.js</a>
+                                         monitoring. Set to <code>false</code> to disable.
+                                    </li>
+                                </ul>
+                                <h5>Bluemix console</h5>
+                                <ol>
+                                    <li>On the Bluemix console page for this application, go to the 'Runtime' page and then the 'Environment Variables' section</li>
+                                    <li>Add the required user-defined variable</li>
                                     <li>Click <code>Save</code> and restart your application</li>
                                 </ol>
                                 <h5><code>cf</code> command-line</h5>
@@ -157,27 +184,31 @@
                 <ul>
                     <li><a href="https://github.com/node-red">GitHub</a></li>
                     <li><a href="https://www.npmjs.com/package/node-red">npm</a></li>
-                    <li><a href="/docs">Documentation</a></li>
+                    <li><a href="https://nodered.org/docs">Documentation</a></li>
                 </ul>
             </div>
             <div class="col-1-6">
                 <ul>
                     <li><a href="https://flows.nodered.org">Flow Library</a></li>
-                    <li><a href="/about/">About</a></li>
+                    <li><a href="https://nodered.org/about/">About</a></li>
                 </ul>
             </div>
             <div class="col-1-6">
                 <ul>
-                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="https://nodered.org/blog/">Blog</a></li>
                     <li><a href="https://twitter.com/nodered">Twitter</a></li>
                     <li><a href="https://groups.google.com/forum/#!forum/node-red">Mailing List</a></li>
-                    <li><a href="/slack">Slack</a></li>
+                    <li><a href="https://nodered.org/slack">Slack</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
+    var appdashURL = $("#appdashURL");
+    var urlString = location.origin + "/appmetrics-dash";
+    appdashURL.empty();
+    $('<a href="' + urlString + '" target="_blank">' + urlString + '</a>').appendTo(appdashURL);
 
     $(function() {
         $("ul.customisations h4").click(function(ev) {

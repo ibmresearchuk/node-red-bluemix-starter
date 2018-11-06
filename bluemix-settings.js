@@ -17,16 +17,26 @@
 var path = require("path");
 var when = require("when");
 var util = require("util");
+var fs = require("fs");
 
 var cfenv = require("cfenv");
 var appEnv = cfenv.getAppEnv();
+
+var userDir = path.join(__dirname,".node-red");
+// Ensure userDir exists - something that is normally taken care of by
+// localfilesystem storage when running locally
+if(!fs.existsSync(userDir)) fs.mkdirSync(userDir);
+if(!fs.existsSync(path.join(userDir,"node_modules"))) fs.mkdirSync(path.join(userDir,"node_modules"));
 
 var settings = module.exports = {
     uiPort: process.env.PORT || 1880,
     mqttReconnectTime: 15000,
     debugMaxLength: 1000,
+    
+    //Flag for enabling Appmetrics dashboard (https://github.com/RuntimeTools/appmetrics-dash)
+    useAppmetrics: false,
 
-    userDir: path.join(__dirname,".node-red"),
+    userDir: userDir,
 
     flowFile: "flows.json",
 
@@ -82,7 +92,7 @@ if (!couchService) {
     }
     //fall back to localfilesystem storage
 } else {
-    util.log("Using Cloudant service: "+storageServiceName);
+    util.log("Using Cloudant service: "+storageServiceName+" : "+settings.couchAppname);
     settings.storageModule = require("./couchstorage");
     settings.couchUrl = couchService.credentials.url;
 }

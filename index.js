@@ -20,7 +20,7 @@ var util = require("util");
 var path = require("path");
 
 
-util.log("Starting Node-RED on Bluemix bootstrap");
+util.log("Starting Node-RED on IBM Cloud bootstrap");
 util.log("Loading bluemix-settings.js");
 var settings = require("./bluemix-settings.js");
 
@@ -128,6 +128,15 @@ function startNodeRED(config) {
         } else {
             util.log("Disabled anonymous read-only access - set NODE_RED_GUEST_ACCESS to 'true' to enable");
         }
+    }
+    if (config.useAppmetrics) {
+      settings.useAppmetrics = config.useAppmetrics;
+    }
+    var dash;
+    // ensure the environment variable overrides the settings
+    if ((process.env.NODE_RED_USE_APPMETRICS === 'true') || (settings.useAppmetrics && !(process.env.NODE_RED_USE_APPMETRICS === 'false'))) {
+    	dash = require('appmetrics-dash');
+    	dash.attach();
     }
     require('./node_modules/node-red/red.js');
 }
