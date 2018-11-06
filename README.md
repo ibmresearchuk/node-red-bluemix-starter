@@ -14,11 +14,8 @@ When you click the button, you are taken to IBM Cloud where you get a pick a nam
 for your application at which point the platform takes over, grabs the code from
 this repository and gets it deployed.
 
-It will automatically create an instance of the Cloudant service, call it
-`sample-node-red-cloudantNoSQLDB` and bind it to you app. This is where your
-Node-RED instance will store its data. If you deploy multiple instances of
-Node-RED from this repository, they will share the one Cloudant instance.
-
+It will automatically create an instance of the Cloudant service and bind it to
+your app. This is where your Node-RED instance will store its data.
 
 When you first access the application, you'll be asked to set some security options
 to ensure your flow editor remains secure from unauthorised access.
