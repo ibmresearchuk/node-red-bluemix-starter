@@ -21,7 +21,7 @@ stages:
         type: deployer
         script: |-
             #!/bin/bash
-            CLOUDANT_NAME="${CF_APP}.cdb"
+            CLOUDANT_NAME="node-red-shared-cloudant"
             cf push "${CF_APP}" --no-start
             cf set-env "${CF_APP}" NODE_RED_STORAGE_NAME "${CLOUDANT_NAME}"
             cf create-service cloudantNoSQLDB Lite "${CF_APP}.cdb"
