@@ -24,7 +24,7 @@ stages:
             CLOUDANT_NAME="node-red-shared-cloudant"
             cf push "${CF_APP}" --no-start
             cf set-env "${CF_APP}" NODE_RED_STORAGE_NAME "${CLOUDANT_NAME}"
-            cf create-service cloudantNoSQLDB Lite "${CF_APP}.cdb"
+            cf create-service cloudantNoSQLDB Lite "${CLOUDANT_NAME}"
             cf bind-service "${CF_APP}" "${CLOUDANT_NAME}" -c '{"role":"Manager"}'
             cf start "${CF_APP}"
             # View logs
