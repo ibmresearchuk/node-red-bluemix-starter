@@ -4,7 +4,7 @@
     "dependencies": {
         "appmetrics-dash": "^3.2.1",
         "when": "~3.x",
-        "nano": "6.2.x",
+        "nano": "8.1.x",
         "bcrypt": "1.0.2",
         "cfenv":"~1.0.0",
         "express":"4.x",
