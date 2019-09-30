@@ -10,7 +10,7 @@
         "express":"4.x",
         "body-parser":"1.x",
         "http-shutdown":"1.2.0",
-        "node-red": "0.x",
+        "node-red": "1.x",
         "node-red-bluemix-nodes":"1.x",
         "node-red-node-watson":"0.x",
         "node-red-node-openwhisk":"0.x",
