@@ -14,7 +14,6 @@
  * limitations under the License.
  **/
 
-var when = require("when");
 var bcrypt = require("bcrypt");
 var util = require("util");
 var path = require("path");
@@ -79,7 +78,7 @@ if (!settings.adminAuth) {
                             startNodeRED(req.body);
                         });
                     },1000);
-                }).otherwise(function(err) {
+                }).catch(function(err) {
                     util.log("Failed to save configuration");
                     util.log(err);
                     res.status(200).end();
@@ -92,7 +91,7 @@ if (!settings.adminAuth) {
             server.listen(settings.uiPort,settings.uiHost,function() {});
             util.log("Waiting for first-use setup to complete");
         }
-    }).otherwise(function(err) {
+    }).catch(function(err) {
         console.log("Failed to initialise storage module");
         console.log(err);
     });
@@ -107,23 +106,23 @@ function startNodeRED(config) {
             type: "credentials",
             users: function(username) {
                 if (config.adminAuth.username == username) {
-                    return when.resolve({username:username,permissions:"*"});
+                    return Promise.resolve({username:username,permissions:"*"});
                 } else {
-                    return when.resolve(null);
+                    return Promise.resolve(null);
                 }
             },
             authenticate: function(username, password) {
                 if (config.adminAuth.username === username && bcrypt.compareSync(password,config.adminAuth.password)) {
-                    return when.resolve({username:username,permissions:"*"});
+                    return Promise.resolve({username:username,permissions:"*"});
                 } else {
-                    return when.resolve(null);
+                    return Promise.resolve(null);
                 }
             }
         };
         if ((process.env.NODE_RED_GUEST_ACCESS === 'true') || (process.env.NODE_RED_GUEST_ACCESS === undefined && config.adminAuth.allowAnonymous)) {
             util.log("Enabling anonymous read-only access - set NODE_RED_GUEST_ACCESS to 'false' to disable");
             settings.adminAuth.default = function() {
-                return when.resolve({anonymous: true, permissions:"read"});
+                return Promise.resolve({anonymous: true, permissions:"read"});
             };
         } else {
             util.log("Disabled anonymous read-only access - set NODE_RED_GUEST_ACCESS to 'true' to enable");

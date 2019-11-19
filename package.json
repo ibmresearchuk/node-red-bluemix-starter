@@ -1,25 +1,24 @@
 {
-    "name"         : "node-red-app",
-    "version"      : "1.0.0",
+    "name": "node-red-app",
+    "version": "1.1.0",
     "dependencies": {
-        "appmetrics-dash": "^3.2.1",
-        "when": "~3.x",
-        "nano": "8.1.x",
-        "bcrypt": "3.0.6",
-        "cfenv":"~1.0.0",
-        "express":"4.x",
-        "body-parser":"1.x",
-        "http-shutdown":"1.2.0",
+        "@cloudant/cloudant": "^4.2.2",
+        "appmetrics-dash": "^5.2.0",
+        "bcrypt": "3.0.7",
+        "body-parser": "1.x",
+        "cfenv": "~1.0.0",
+        "express": "4.x",
+        "http-shutdown": "1.2.1",
         "node-red": "1.x",
-        "node-red-bluemix-nodes":"1.x",
-        "node-red-node-watson":"0.x",
-        "node-red-node-openwhisk":"0.x",
-        "node-red-node-cf-cloudant":"0.x"
+        "node-red-node-cf-cloudant": "0.x",
+        "node-red-node-openwhisk": "0.x",
+        "node-red-node-watson": "0.x",
+        "node-red-nodes-cf-sqldb-dashdb": "0.x"
     },
     "scripts": {
         "start": "node --max-old-space-size=160 index.js --settings ./bluemix-settings.js -v"
     },
     "engines": {
-        "node": "10.x"
+        "node": "12.x"
     }
 }

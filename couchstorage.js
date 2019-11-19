@@ -14,8 +14,7 @@
  * limitations under the License.
  **/
 
-var nano = require('nano');
-var when = require('when');
+var Cloudant = require('@cloudant/cloudant');
 var util = require('util');
 var fs = require('fs');
 
@@ -59,7 +58,7 @@ function prepopulateFlows(resolve) {
             } else {
                 util.log("[couchstorage] No default credentials found");
             }
-            when.settle(promises).then(function() {
+            Promise.all(promises).then(function() {
                 resolve();
             });
         } else {
@@ -73,11 +72,11 @@ function prepopulateFlows(resolve) {
 var couchstorage = {
     init: function(_settings) {
         settings = _settings;
-        var couchDb = nano(settings.couchUrl);
+        var couchDb = Cloudant({ vcapInstanceName: settings.cloudantService, vcapServices: JSON.parse(process.env.VCAP_SERVICES) });
         appname = settings.couchAppname || require('os').hostname();
         var dbname = settings.couchDb||"nodered";
 
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             couchDb.db.get(dbname,function(err,body) {
                 if (err) {
                     couchDb.db.create(dbname,function(err,body) {
@@ -135,7 +134,7 @@ var couchstorage = {
 
     getFlows: function() {
         var key = appname+"/"+"flow";
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             flowDb.get(key,function(err,doc) {
                 if (err) {
                     if (err.statusCode != 404) {
@@ -153,7 +152,7 @@ var couchstorage = {
 
     saveFlows: function(flows) {
         var key = appname+"/"+"flow";
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             var doc = {_id:key,flow:flows};
             if (currentFlowRev) {
                 doc._rev = currentFlowRev;
@@ -171,7 +170,7 @@ var couchstorage = {
 
     getCredentials: function() {
         var key = appname+"/"+"credential";
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             flowDb.get(key,function(err,doc) {
                 if (err) {
                     if (err.statusCode != 404) {
@@ -189,7 +188,7 @@ var couchstorage = {
 
     saveCredentials: function(credentials) {
         var key = appname+"/"+"credential";
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             var doc = {_id:key,credentials:credentials};
             if (currentCredRev) {
                 doc._rev = currentCredRev;
@@ -207,7 +206,7 @@ var couchstorage = {
 
     getSettings: function() {
         var key = appname+"/"+"settings";
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             flowDb.get(key,function(err,doc) {
                 if (err) {
                     if (err.statusCode != 404) {
@@ -225,7 +224,7 @@ var couchstorage = {
 
     saveSettings: function(settings) {
         var key = appname+"/"+"settings";
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             var doc = {_id:key,settings:settings};
             if (currentSettingsRev) {
                 doc._rev = currentSettingsRev;
@@ -243,7 +242,7 @@ var couchstorage = {
 
     getAllFlows: function() {
         var key = [appname,"flow"];
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             flowDb.view('library','flow_entries_by_app_and_type',{key:key}, function(e,data) {
                 if (e) {
                     reject(e.toString());
@@ -273,7 +272,7 @@ var couchstorage = {
             fn = "/"+fn;
         }
         var key = appname+"/lib/flow"+fn;
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             flowDb.get(key,function(err,data) {
                 if (err) {
                     reject(err);
@@ -289,7 +288,7 @@ var couchstorage = {
             fn = "/"+fn;
         }
         var key = appname+"/lib/flow"+fn;
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             var doc = {_id:key,data:data};
             flowDb.get(key,function(err,d) {
                 if (d) {
@@ -313,12 +312,12 @@ var couchstorage = {
         } else {
             var key = appname+"/lib/"+type+path;
         }
-        
+
         if (libraryCache[key]) {
-            return when.resolve(libraryCache[key]);
+            return Promise.resolve(libraryCache[key]);
         }
 
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             flowDb.get(key,function(err,doc) {
                 if (err) {
                     if (path.substr(-1,1) == "/") {
@@ -356,15 +355,15 @@ var couchstorage = {
     },
     saveLibraryEntry: function(type,path,meta,body) {
 
-        var p = path.split("/");    // strip multiple slash   
+        var p = path.split("/");    // strip multiple slash
         p = p.filter(Boolean);
         path = p.slice(0,p.length).join("/")
-                
+
         if (path != "" && path.substr(0,1) != "/") {
             path = "/"+path;
         }
         var key = appname+"/lib/"+type+path;
-        return when.promise(function(resolve,reject) {
+        return new Promise(function(resolve,reject) {
             var doc = {_id:key,meta:meta,body:body};
             flowDb.get(key,function(err,d) {
                 if (d) {

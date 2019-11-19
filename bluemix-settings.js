@@ -1,5 +1,5 @@
 /**
- * Copyright 2014, 2017 IBM Corp.
+ * Copyright 2014, 2019 IBM Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  **/
 
 var path = require("path");
-var when = require("when");
 var util = require("util");
 var fs = require("fs");
 
@@ -32,7 +31,7 @@ var settings = module.exports = {
     uiPort: process.env.PORT || 1880,
     mqttReconnectTime: 15000,
     debugMaxLength: 1000,
-    
+
     //Flag for enabling Appmetrics dashboard (https://github.com/RuntimeTools/appmetrics-dash)
     useAppmetrics: false,
 
@@ -44,7 +43,7 @@ var settings = module.exports = {
     nodesDir: path.join(__dirname,"nodes"),
 
     // Blacklist the non-bluemix friendly nodes
-    nodesExcludes:['66-mongodb.js','75-exec.js','35-arduino.js','36-rpi-gpio.js','25-serial.js','28-tail.js','50-file.js','31-tcpin.js','32-udp.js','23-watch.js'],
+    nodesExcludes:['90-exec.js','28-tail.js','10-file.js','23-watch.js'],
 
     // Enable module reinstalls on start-up; this ensures modules installed
     // post-deploy are restored after a restage
@@ -96,5 +95,6 @@ if (!couchService) {
 } else {
     util.log("Using Cloudant service: "+storageServiceName+" : "+settings.couchAppname);
     settings.storageModule = require("./couchstorage");
+    settings.cloudantService = storageServiceName;
     settings.couchUrl = couchService.credentials.url;
 }
