@@ -5,7 +5,6 @@ We welcome contributions, but request you follow these guidelines.
  - [Raising issues](#raising-issues)
  - [Feature requests](#feature-requests)
  - [Pull-Requests](#pull-requests)
-   - [Contributor License Agreement](#contributor-license-agreement)
 
 ## Raising issues
 
@@ -21,13 +20,13 @@ relevant nodes, press Ctrl-E and copy the flow data from the Export dialog.
 
 ## Feature requests
 
-For feature requests, please first discuss them on the [Node-RED mailing list](https://groups.google.com/forum/#!forum/node-red).
+For feature requests, please first discuss them on the [Node-RED forum](https://discourse.nodered.org).
 
 ## Pull-Requests
 
 If you want to raise a pull-request with a new feature, or a refactoring
 of existing code, it may well get rejected if you haven't discussed it on
-the [mailing list](https://groups.google.com/forum/#!forum/node-red) first.
+the [forum](https://discourse.nodered.org) first.
 
 
 ### Developer's Certificate of Origin
@@ -43,4 +42,3 @@ Signed-off-by: John Doe <john.doe@hisdomain.com>
 
 You can include this automatically when you commit a change to your local git
 repository using `git commit -s`.
-

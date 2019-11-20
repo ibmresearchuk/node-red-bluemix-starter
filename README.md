@@ -51,6 +51,8 @@ The following environment variables can be used to configure the application:
 
  - `NODE_RED_STORAGE_NAME` - the Cloudant service name as exposed in `VCAP_SERVICES`
  - `NODE_RED_STORAGE_DB_NAME` - the name of the database to use on Cloudant
+ - `NODE_RED_STORAGE_APP_NAME` - the prefix used in document names, allowing multiple instances
+    to share the same database.
  - `NODE_RED_USERNAME`, `NODE_RED_PASSWORD` - if set, used to secure the editor
  - `NODE_RED_GUEST_ACCESS` - if the editor is secured, this will allow anonymous,
     read-only access

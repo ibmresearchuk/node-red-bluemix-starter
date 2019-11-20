@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM Corp.
+ * Copyright 2017, 2019 IBM Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ var bcrypt = require("bcrypt");
 var util = require("util");
 var path = require("path");
 
-
 util.log("Starting Node-RED on IBM Cloud bootstrap");
 util.log("Loading bluemix-settings.js");
 var settings = require("./bluemix-settings.js");
@@ -32,7 +31,7 @@ if (!settings.adminAuth) {
         storage = require('./node_modules/@node-red/runtime/lib/storage/localfilesystem');
     }
     util.log("Loading application settings");
-    storage.init(settings).then(storage.getSettings).then(function(runtimeSettings) {
+    storage.init(settings).then(storage.getSettings).then(runtimeSettings => {
         if (process.env.NODE_RED_USERNAME && process.env.NODE_RED_PASSWORD) {
             util.log("Enabling adminAuth using NODE_RED_USERNAME/NODE_RED_PASSWORD");
             var config = {
@@ -45,7 +44,7 @@ if (!settings.adminAuth) {
 
             if (runtimeSettings.bluemixConfig && runtimeSettings.bluemixConfig.hasOwnProperty('adminAuth')) {
                 delete runtimeSettings.bluemixConfig.adminAuth;
-                storage.saveSettings(runtimeSettings).then(function() {
+                storage.saveSettings(runtimeSettings).then(() => {
                     startNodeRED(config);
                 });
             } else {
@@ -61,38 +60,38 @@ if (!settings.adminAuth) {
             var bodyParser = require('body-parser');
             var app = express();
             app.use(bodyParser.json());
-            app.get("/", function(req,res) {
-                res.sendFile(path.join(__dirname,"public","first-run.html"));
+            app.get("/", function (req, res) {
+                res.sendFile(path.join(__dirname, "public", "first-run.html"));
             });
-            app.post("/setup", function(req,res) {
+            app.post("/setup", function (req, res) {
                 if (req.body.adminAuth && req.body.adminAuth.password) {
                     req.body.adminAuth.password = bcrypt.hashSync(req.body.adminAuth.password, 8);
                 }
                 runtimeSettings.bluemixConfig = req.body;
                 util.log("Received first-use setup configuration");
-                storage.saveSettings(runtimeSettings).then(function() {
+                storage.saveSettings(runtimeSettings).then(() => {
                     res.status(200).end();
-                    setTimeout(function() {
+                    setTimeout(function () {
                         util.log("Stopping first-use setup application");
-                        server.shutdown(function() {
+                        server.shutdown(() => {
                             startNodeRED(req.body);
                         });
-                    },1000);
-                }).catch(function(err) {
+                    }, 1000);
+                }).catch(err => {
                     util.log("Failed to save configuration");
                     util.log(err);
                     res.status(200).end();
                 });
             });
-            app.use("/",express.static(path.join(__dirname,"public")));
+            app.use("/", express.static(path.join(__dirname, "public")));
             var http = require('http');
-            server = http.createServer(function(req,res) {app(req,res);});
+            server = http.createServer(function (req, res) { app(req, res); });
             server = require('http-shutdown')(server);
-            server.listen(settings.uiPort,settings.uiHost,function() {});
+            server.listen(settings.uiPort, settings.uiHost, function () { });
             util.log("Waiting for first-use setup to complete");
         }
-    }).catch(function(err) {
-        console.log("Failed to initialise storage module");
+    }).catch(err => {
+        console.log("Failed to initialize storage module");
         console.log(err);
     });
 } else {
@@ -104,16 +103,16 @@ function startNodeRED(config) {
         util.log("Enabling adminAuth security - set NODE_RED_USERNAME and NODE_RED_PASSWORD to change credentials");
         settings.adminAuth = {
             type: "credentials",
-            users: function(username) {
+            users: function (username) {
                 if (config.adminAuth.username == username) {
-                    return Promise.resolve({username:username,permissions:"*"});
+                    return Promise.resolve({ username: username, permissions: "*" });
                 } else {
                     return Promise.resolve(null);
                 }
             },
-            authenticate: function(username, password) {
-                if (config.adminAuth.username === username && bcrypt.compareSync(password,config.adminAuth.password)) {
-                    return Promise.resolve({username:username,permissions:"*"});
+            authenticate: function (username, password) {
+                if (config.adminAuth.username === username && bcrypt.compareSync(password, config.adminAuth.password)) {
+                    return Promise.resolve({ username: username, permissions: "*" });
                 } else {
                     return Promise.resolve(null);
                 }
@@ -121,8 +120,8 @@ function startNodeRED(config) {
         };
         if ((process.env.NODE_RED_GUEST_ACCESS === 'true') || (process.env.NODE_RED_GUEST_ACCESS === undefined && config.adminAuth.allowAnonymous)) {
             util.log("Enabling anonymous read-only access - set NODE_RED_GUEST_ACCESS to 'false' to disable");
-            settings.adminAuth.default = function() {
-                return Promise.resolve({anonymous: true, permissions:"read"});
+            settings.adminAuth.default = function () {
+                return Promise.resolve({ anonymous: true, permissions: "read" });
             };
         } else {
             util.log("Disabled anonymous read-only access - set NODE_RED_GUEST_ACCESS to 'true' to enable");
