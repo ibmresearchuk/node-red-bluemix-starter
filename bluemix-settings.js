@@ -90,12 +90,14 @@ var settings = module.exports = {
 
 // Identify the Cloudant storage instance the application should be using.
 var storageServiceName;
+var storageServiceDetails;
+
 
 if (process.env.NODE_RED_STORAGE_NAME) {
     // A service has been identifed by the NODE_RED_STORAGE_NAME env var.
     //  - check to see if the named service exists
-    var couchService = appEnv.getService(process.env.NODE_RED_STORAGE_NAME);
-    if (!couchService) {
+    storageServiceDetails = appEnv.getService(process.env.NODE_RED_STORAGE_NAME);
+    if (!storageServiceDetails) {
         util.log("Failed to find Cloudant service: "+process.env.NODE_RED_STORAGE_NAME+ " (NODE_RED_STORAGE_NAME)");
     } else {
         storageServiceName = process.env.NODE_RED_STORAGE_NAME
@@ -109,6 +111,7 @@ if (process.env.NODE_RED_STORAGE_NAME) {
         // Use the first in the list - but warn if there are multiple incase we
         // are using the 'wrong' one.
         storageServiceName = candidateServices[0].name;
+        storageServiceDetails = candidateServices[0];
         if (candidateServices.length > 1) {
             util.log("Multiple Cloudant services found - using "+storageServiceName+". Use NODE_RED_STORAGE_NAME env var to specify the required instance.");
         }
@@ -123,6 +126,8 @@ if (!storageServiceName) {
     settings.cloudantService = {
         // The name of the service instance to use.
         name: storageServiceName,
+        // The URL to use
+        url: storageServiceDetails.credentials.url,
         // The name of the database to use
         db: process.env.NODE_RED_STORAGE_DB_NAME || appEnv.name.replace(/[^a-z0-9_$()+/-]/g,"_"),
         // The prefix for all document names stored by this instance.
