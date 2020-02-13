@@ -1,12 +1,17 @@
-Node-RED IBM Cloud Starter Application
-====================================
+**Deprecated: this repository is no longer the recommended way of deploying Node-RED to IBM Cloud. It will not be receiving any new fixes or updates.**
+
+
+Please refer to [this IBM Developer tutorial](https://developer.ibm.com/tutorials/how-to-create-a-node-red-starter-application/) for how to create a new Node-RED Starter Application in IBM Cloud.
+
+***
+
 
 ### Node-RED on IBM Cloud
 
 This repository is an example Node-RED application that can be deployed into
 IBM Cloud with only a couple clicks. Try it out for yourself right now by clicking:
 
-[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibmets/node-red-bluemix-starter.git)
+[Deploy to IBM Cloud](https://bluemix.net/deploy?repository=https://github.com/ibmets/node-red-bluemix-starter.git)
 
 ### How does this work?
 
