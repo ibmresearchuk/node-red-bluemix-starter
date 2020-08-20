@@ -4,7 +4,7 @@
     "dependencies": {
         "@cloudant/cloudant": "^4.2.2",
         "appmetrics-dash": "^5.2.0",
-        "bcrypt": "^3.0.7",
+        "bcrypt": "^5.0.0",
         "body-parser": "1.x",
         "cfenv": "^1.2.2",
         "express": "4.x",
